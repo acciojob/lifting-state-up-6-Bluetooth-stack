@@ -8,8 +8,8 @@ const Child = (props) => {
             <h3>Child Component</h3>
             <ul>
                 {
-                    props.list.map((item,index)=>(
-                        <li>{item.task}{!(item.completed) && (<button onClick={()=>{props.click(index)}}>Complete</button>)}</li>
+                    props.list.map((item)=>(
+                        <li key={props.list.id}>{item.task}{!(item.completed) && (<button onClick={()=>{props.click(item.id)}}>Complete</button>)}</li>
                     ))
                 }
             </ul>

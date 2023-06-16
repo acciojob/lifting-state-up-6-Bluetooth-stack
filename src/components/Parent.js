@@ -2,20 +2,24 @@ import React, {useState} from "react";
 import Child from "./Child";
 
 const arr = [
-    { task: "Learn React", completed: false },
-    { task: "Build a React app", completed: false },
-    { task: "Deploy the React app", completed: false }
+    { id:1, task: "Learn React", completed: false },
+    { id:2, task: "Build a React app", completed: false },
+    { id:3, task: "Deploy the React app", completed: false }
 ];
 
 const Parent = ()=>{
     let [todos, setTodos] = useState(arr);
 
-    function changeState(index){
-        let lists = [...todos];
-        lists[index].completed=true;
+    function changeState(id){
+        let lists = todos.map(obj=>{
+            if(obj.id===id){
+                return {...obj, completed: true};
+            }
+            return obj;
+        });
         setTodos(lists);
     }
-
+    
     return(
         <div>
             <h1>Parent Component</h1>
