@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 
 
-const Child = (props) => {
-    
+const Child = (todo) => {
+
     return (
         <div>
-            <h2>Child Component</h2>
-            <ul>
-                {
-                    props.list.map((item)=>(
-                        <li key={props.list.id}>{item.task}{!(item.completed) && (<button onClick={()=>{props.click(item.id)}}>Complete</button>)}</li>
-                    ))
-                }
-            </ul>
+            <span>{todo.text}</span>
         </div>
     )
 }

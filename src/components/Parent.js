@@ -1,33 +1,40 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Child from "./Child";
 
-// const arr = [
-//     { id:1, task: "Learn React", completed: false },
-//     { id:2, task: "Build a React app", completed: false },
-//     { id:3, task: "Deploy the React app", completed: false }
-// ];
 
-const Parent = ()=>{
-    let [todos, setTodos] = useState([ { id:1, task: "Learn React", completed: false },
-    { id:2, task: "Build a React app", completed: false },
-    { id:3, task: "Deploy the React app", completed: false } ]);
+// Parent component
+const TodoList = () => {
+  const [todos, setTodos] = useState([
+    { id: 1, text: "Learn React", completed: false },
+    { id: 2, text: "Build a todo app", completed: false },
+    { id: 3, text: "Deploy to production", completed: false },
+  ]);
 
-    function changeState(id){
-        let lists = todos.map(obj=>{
-            if(obj.id===id){
-                return {...obj, completed: true};
-            }
-            return obj;
-        });
-        setTodos(lists);
-    }
-    
-    return(
-        <div>
-            <h1>Parent Component</h1>
-            <Child list={todos} click={(ind)=>{changeState(ind)}}></Child>
-        </div>
-    )
-}
+  // Function to mark a todo item as completed
+  const completeTodo = (id) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed: true };
+      }
+      return todo;
+    });
 
-export default Parent;
+    setTodos(updatedTodos);
+  };
+
+  return (
+    <div>
+      <h1>Todo List</h1>
+      {todos.map((todo) => (
+        <li key={todo.id}>
+          <Child todo={todo} />
+          {!todo.completed && (
+            <button onClick={() => completeTodo(todo.id)}>Complete</button>
+          )}
+        </li>
+      ))}
+    </div>
+  );
+};
+
+export default TodoList;
