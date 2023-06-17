@@ -5,7 +5,7 @@ const Child = (props) => {
     
     return (
         <div>
-            <h3>Child Component</h3>
+            <h2>Child Component</h2>
             <ul>
                 {
                     props.list.map((item)=>(
